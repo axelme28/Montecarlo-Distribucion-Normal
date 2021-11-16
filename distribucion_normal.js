@@ -1,6 +1,7 @@
 const results = document.getElementById('results');
-const min_value = document.getElementById('input_min');
-const max_value = document.getElementById('input_max');
+const minValue = document.getElementById('input_min');
+const maxValue = document.getElementById('input_max');
+const maxIterations = document.getElementById('input_iterations');
 const generate = document.getElementById('generate');
 const evaluate = document.getElementById('evaluate');
 const montecarloRandom = document.getElementById('montecarlo_random');
@@ -11,14 +12,18 @@ let chart;
 let values = [];
 let intervals = [];
 let randomList = [];
+let min = 0;
+let max = 0;
+let iterations = 0;
 
 generate.addEventListener('click', normalDistribution);
 evaluate.addEventListener('click', generateRandom);
 
 function normalDistribution() {
     let randomNumbers = [];
-    let min = Number(min_value.value);
-    let max = Number(max_value.value);
+    min = Number(minValue.value);
+    max = Number(maxValue.value);
+    iterations = Number(maxIterations.value);
     if (min < max) {
         let mean = (min + max) / 2;
         let desv = (max - min) / 10;
@@ -28,7 +33,7 @@ function normalDistribution() {
             values.push(0);
         }
         let actualRandom = 0;
-        for (let i = 0; i < 10000; i++) {
+        for (let i = 0; i < iterations; i++) {
             actualRandom = randomNormalDistribution(mean, desv);
             randomNumbers.push(actualRandom);
             for (let j = 0; j < (intervals.length)-1; j++) {
@@ -44,7 +49,11 @@ function normalDistribution() {
         graphicGenerated = true;
         results.innerHTML = `<p><strong>Media: ${mean}</strong></p><p><strong>Desv. Estándar: ${desv}</strong></p>`;
     } else {
-        window.alert('El rango de valores es incorrecto');
+        if (min == 0 && max == 0 && iterations == 0) {
+            window.alert('Aun no ha ingresado todos los parametros');
+        } else {
+            window.alert('El rango de valores es incorrecto');
+        }
     }
 }
 
@@ -112,8 +121,6 @@ function randomNormalDistribution(mean, standardDeviation) {
 
 function generateRandom() {
     if (graphicGenerated) {
-        let min = Number(min_value.value);
-        let max = Number(max_value.value);
         let randomX = (Math.random() * (max - min)) + min;
         let randomY = Math.floor(Math.random() * maxNormalValue);
         let interval = 0;
