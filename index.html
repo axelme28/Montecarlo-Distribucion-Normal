@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="gaussian-function.png" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
-    <title>Distribución normal</title>
-</head>
-<body>
-    <h1>Montecarlo - Distribución Normal</h1>
-    <div class="form_container">
-        <div class="form">
-            <input type="number" name="min_value" id="input_min" autocomplete="off" required/>
-            <label for="min_value" class="label_input">
-                <span class="content_input">Valor inicial</span>
-            </label>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="gaussian-function.png" type="image/x-icon" />
+        <link rel="stylesheet" href="styles.css" />
+        <title>Distribución normal</title>
+    </head>
+    <body>
+        <h1>Distribución Normal</h1>
+        <div class="form_container">
+            <div class="form">
+                <input type="number" name="min_value" id="input_min" autocomplete="off" required />
+                <label for="min_value" class="label_input">
+                    <span class="content_input">Valor inicial</span>
+                </label>
+            </div>
+            <div class="form">
+                <input type="number" name="max_value" id="input_max" autocomplete="off" required />
+                <label for="max_value" class="label_input">
+                    <span class="content_input">Valor final</span>
+                </label>
+            </div>
+            <div class="form">
+                <input
+                    type="number"
+                    name="iterations_value"
+                    id="input_iterations"
+                    autocomplete="off"
+                    required
+                />
+                <label for="iterations_value" class="label_input">
+                    <span class="content_input">Iteraciones</span>
+                </label>
+            </div>
+            <button id="generate" class="generate_button">
+                <strong>Generar Grafico</strong>
+            </button>
+            <button id="evaluate" class="generate_button">
+                <strong>Evaluar aleatorio</strong>
+            </button>
         </div>
-        <div class="form">
-            <input type="number" name="max_value" id="input_max" autocomplete="off" required/>
-            <label for="max_value" class="label_input">
-                <span class="content_input">Valor final</span>
-            </label>
+        <div class="chart">
+            <canvas id="myChart"></canvas>
         </div>
-        <div class="form">
-            <input type="number" name="iterations_value" id="input_iterations" autocomplete="off" required/>
-            <label for="iterations_value" class="label_input">
-                <span class="content_input">Iteraciones</span>
-            </label>
-        </div>
-        <button id="generate" class="generate_button">
-            <strong>Generar Grafico</strong>
-        </button>
-        <button id="evaluate" class="generate_button">
-            <strong>Evaluar aleatorio</strong>
-        </button>
-    </div>
-    <div class="chart">
-        <canvas id="myChart"></canvas>
-    </div>
-    <div id="results"></div>
-    <div id="montecarlo_random"></div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="distribucion_normal.js"></script>
-</body>
+        <div id="results"></div>
+        <div id="montecarlo_random"></div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="distribucion_normal.js"></script>
+    </body>
 </html>
